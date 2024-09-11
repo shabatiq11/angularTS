@@ -1,0 +1,25 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <h4>Login Here</h4>
+  <input
+    type="email"
+    required
+    placeholder="user@example.com"
+    [formControl]="email"
+  />
+  <p [hidden]="email.valid || email.untouched" style="color: red">
+    Enter Valid email
+  </p>
+  <input
+    required
+    type="password"
+    placeholder="enter password"
+    [formControl]="password"
+  />
+  <p [hidden]="password.valid || password.untouched" style="color: red">
+    Enter password with minimum length of 6
+  </p>
+
+  <button type="submit" [disabled]="loginForm.invalid">Login</button>
+  <button type="button" (click)="reset()">Reset</button>
+  <button><a routerLink="/signup">Don't have any Account</a></button>
+</form>

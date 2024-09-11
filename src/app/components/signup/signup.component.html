@@ -1,0 +1,36 @@
+<form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+  <h4>Register Here</h4>
+  <div>
+    <input type="email" placeholder="user@example.com" [formControl]="email" />
+    <p [hidden]="email.valid || email.untouched" style="color: red">
+      Enter Valid email
+    </p>
+  </div>
+  <div>
+    <input
+      type="password"
+      placeholder="enter password"
+      [formControl]="password"
+    />
+    <p [hidden]="password.valid || password.untouched" style="color: red">
+      Enter password with minimum length of 6
+    </p>
+  </div>
+  <div>
+    <input
+      type="password"
+      placeholder="confirm your password"
+      [formControl]="confirmPassword"
+    />
+    <p
+      [hidden]="confirmPassword.valid || confirmPassword.untouched"
+      style="color: red"
+    >
+      Enter password with minimum length of 6
+    </p>
+  </div>
+
+  <button type="submit" [disabled]="signupForm.invalid">SignUp</button>
+  <button type="button" (click)="reset()">Reset Form</button>
+  <button><a routerLink="/login">Already have an Account?</a></button>
+</form>

@@ -1,0 +1,21 @@
+<form [formGroup]="createBin" (ngSubmit)="onSubmit()">
+  <h4>create code snippet here</h4>
+  <div>
+    <input type="email" placeholder="title" [formControl]="title" />
+    <p [hidden]="title.valid || title.untouched" style="color: red">
+      Title is required
+    </p>
+  </div>
+  <div>
+    <input
+      type="password"
+      placeholder="code snippet here"
+      [formControl]="code"
+    />
+    <p [hidden]="code.valid || code.untouched" style="color: red">
+      code is required
+    </p>
+  </div>
+
+  <button type="submit" [disabled]="createBin.invalid">SignUp</button>
+</form>
