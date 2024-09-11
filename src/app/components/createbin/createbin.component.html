@@ -7,15 +7,17 @@
     </p>
   </div>
   <div>
-    <input
+    <textarea
       type="password"
       placeholder="code snippet here"
       [formControl]="code"
-    />
+    ></textarea>
     <p [hidden]="code.valid || code.untouched" style="color: red">
       code is required
     </p>
   </div>
 
-  <button type="submit" [disabled]="createBin.invalid">SignUp</button>
+  <button type="submit" [disabled]="createBin.invalid">
+    Create code snippet
+  </button>
 </form>

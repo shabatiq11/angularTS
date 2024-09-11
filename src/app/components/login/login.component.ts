@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ import { Router, RouterLink } from '@angular/router';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-  constructor(private router: Router) {}
+  constructor(private authService: AuthService) {}
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('', [
     Validators.required,
@@ -28,8 +29,10 @@ export class LoginComponent {
   });
 
   onSubmit() {
-    console.log(this.loginForm.value);
-    this.router.navigate(['/']);
+    this.authService.logInUser(
+      this.loginForm.value.email!,
+      this.loginForm.value.password!
+    );
   }
 
   reset() {

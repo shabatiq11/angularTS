@@ -5,7 +5,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -15,30 +16,24 @@ import { Router, RouterLink } from '@angular/router';
   styleUrl: './signup.component.scss',
 })
 export class SignupComponent {
-  constructor(private router: Router) {}
-  email = new FormControl('', [
-    Validators.required,
-    Validators.email,
-    //prettier-ignore
-    // Validators.pattern('/^[a-z0-9][\w\.]+\@\w+?(\.\w+){1,}$/gi'),
-  ]);
+  constructor(private authService: AuthService) {}
+  email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('', [
     Validators.required,
     Validators.minLength(6),
   ]);
-  confirmPassword = new FormControl('', [
-    Validators.required,
-    Validators.minLength(6),
-  ]);
+
   signupForm = new FormGroup({
     email: this.email,
     password: this.password,
-    confirmPassword: this.confirmPassword,
   });
 
   onSubmit() {
     console.log(this.signupForm.value);
-    this.router.navigate(['/']);
+    this.authService.createUser(
+      this.signupForm.value.email!,
+      this.signupForm.value.password!
+    );
   }
   reset() {
     this.signupForm.reset();

@@ -15,6 +15,6 @@ export const routes: Routes = [
         (mod) => mod.AboutComponent
       ),
   },
-  // { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '**', component: NotfoundComponent },
 ];
